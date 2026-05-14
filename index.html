@@ -377,6 +377,11 @@
       }, [authResolved]);
 
       // --- HANDLERS ---
+      const showToastMessage = (message, type = 'success') => { 
+        setToast({ message, type }); 
+        setTimeout(() => setToast(null), 3500); 
+      };
+
       const toggleTag = (tag) => {
         if (selectedTags.includes(tag)) setSelectedTags(selectedTags.filter(t => t !== tag));
         else {
@@ -537,8 +542,8 @@
                         <UserIcon size={40} className="text-rose-500" />
                       </div>
                       <h3 className="text-3xl font-black font-heading text-white mb-4">Authentication Required</h3>
-                      <p className="text-violet-300 font-ui text-lg mb-8 max-w-md mx-auto">You must be logged into your Nexis Games account via the main Hub to submit a game.</p>
-                      <a href="https://nexisgd.com" className="inline-block px-10 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold font-heading tracking-widest text-xl uppercase rounded-2xl transition-all shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:scale-105">Go to Hub to Log In</a>
+                      <p className="text-violet-300 font-ui text-lg mb-8 max-w-md mx-auto">You must be logged into your Nexis Games account to submit a game.</p>
+                      <button onClick={() => setShowAuthModal(true)} className="inline-block px-10 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold font-heading tracking-widest text-xl uppercase rounded-2xl transition-all shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:scale-105">Sign In Now</button>
                    </div>
                  ) : uploadStatus === 'success' ? (
                    <div className="glass-panel rounded-[2.5rem] p-12 text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-modal-pop">
